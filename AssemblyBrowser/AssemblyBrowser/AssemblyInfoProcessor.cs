@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AssemblyBrowser
 {
-    class AssemblyInfoProcessor
+    public class AssemblyInfoProcessor
     {
         private Assembly asm;
 

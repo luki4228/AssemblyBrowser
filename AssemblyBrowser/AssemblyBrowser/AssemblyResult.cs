@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AssemblyBrowser
 {
-    class AssemblyResult
+    public class AssemblyResult
     {
         private List<NamespaceResult> namespaces;
 
