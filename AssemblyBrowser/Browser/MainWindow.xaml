@@ -3,10 +3,68 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Browser"
+        xmlns:VM="clr-namespace:Browser" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000">
+    <Window.Resources>
+        <DataTemplate x:Key="ItemTemplate1">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ItemTemplate2">
+            <StackPanel>
+                <TextBlock Text="{Binding Title}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="198*" />
+            <ColumnDefinition Width="395*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="188*" />
+            <RowDefinition Height="313*"/>
+            <RowDefinition Height="70*" />
+        </Grid.RowDefinitions>
+        <ListBox x:Name="Assemblies" Grid.Column="0" ItemsSource="{Binding Assemblies}"
+                 SelectedItem="{Binding SelectedAssembly}" Margin="0,0,1.4,69.4" Grid.RowSpan="3">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Delete" Command="{Binding RemoveCommand}"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock FontSize="18" Text="{Binding Path=Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0.2,1.4,0.4">
+            <Button Command="{Binding AddCommand}" Width="195" Content="Add" Margin="0,0,0,-0.2"/>
+        </StackPanel>
+        <StackPanel DataContext="{Binding SelectedAssembly}" Margin="3.6,0,-0.4,69.4" Grid.RowSpan="3" Grid.Column="1" Orientation="Horizontal">
+            <TreeView x:Name="MainTreeView" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch"
+                      ItemsSource="{Binding Namespaces}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Types}">
+                        <Label Content="{Binding Path=Name}" />
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding TypeInfo}">
+                                <Label Content="{Binding Path=Name}" />
+                                <HierarchicalDataTemplate.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding}"/>
+                                    </DataTemplate>
+                                </HierarchicalDataTemplate.ItemTemplate>
+                            </HierarchicalDataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </StackPanel>
     </Grid>
 </Window>
