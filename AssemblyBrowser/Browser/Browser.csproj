@@ -55,9 +55,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Assembly.cs" />
+    <Compile Include="AssemblyProcessor.cs" />
     <Compile Include="DataType.cs" />
+    <Compile Include="IAssemblyProcessor.cs" />
+    <Compile Include="IService.cs" />
     <Compile Include="NameSpace.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="Service.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -96,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AssemblyBrowser\AssemblyBrowser.csproj">
+      <Project>{408465cf-1a28-4e3a-a6f2-df1e0704a91c}</Project>
+      <Name>AssemblyBrowser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

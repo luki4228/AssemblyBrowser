@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Browser
 {
-    class Service
+    public class Service : IService
     {
         public string OpenFileDialog()
         {
