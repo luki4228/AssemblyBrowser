@@ -23,6 +23,9 @@ namespace Browser
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            AppViewModel app = new AppViewModel();
+            DataContext = app;
         }
     }
 }

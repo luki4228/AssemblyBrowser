@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppViewModel.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="AssemblyProcessor.cs" />
     <Compile Include="DataType.cs" />
